@@ -5,6 +5,7 @@ Earthquake Mapping Soft
 ## What is this?
 
 This soft is used D3.js, to make a earthquake detail map.
+
 これはD3.jsを使った震度分布図を作成するやつです。
 
 (動作部分はD3.jsで、パッケージ化はElectronです。)
@@ -13,9 +14,19 @@ This soft is used D3.js, to make a earthquake detail map.
 
 ## How to use this soft?
 
+このソフトは
+
+`Noto Sans jp`と`Inter Medium 500`と`Inter Regular 400`が必要です。
+
+`Noto Sans jp`と`Inter Medium 500`と`Inter Regular 400`が必要です。
+
+（重要なことだから2回)
+
+
 ### [1] GithubからBuildして入れる場合 - Advanced Download
 
 At the first :
+
 まずは最初に :
 ```
 git clone https://github.com/akikaki-bot/emap
@@ -42,6 +53,7 @@ electron-builder
 ```
 
 Finally, a setup.exe will be generated and the installation can begin.
+
 でsetup.exeファイルが生成されます。
 
 ### [2] ふつうにsetupからいれたい - Normal Download
@@ -55,12 +67,17 @@ Finally, a setup.exe will be generated and the installation can begin.
 ## 重要 - Important
 
 DO NOT REDISTRIBUTION THIS SOFT.
+
 二次配布は絶対にやめてください。
 
 I DONT PERMISSION IN ANY CASE IT.
+
 いかなる場合でも許しません。
 
 ## License
+
 たぶんだけど
+
 **CC BY-ND 4.0**
+
 の下保護されます
