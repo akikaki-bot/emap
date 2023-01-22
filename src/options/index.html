@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color:#1c1b1b">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style src="./index.css"></style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="./script/ready.min.js"></script>
+  <script src="./script/contain.settings.js"></script>
+  <link rel="stylesheet" href="https://images.akika.ga/1313_datas_1321a_dashboard_a23420982.css">
+  <style>
+    body {
+        color: "#FFFFFF"
+    }
+  </style>
+</head>
+<body onload="display(); load()">
+  <section class="section">
+    <div class="container_the_main">
+      <div class="preview left-menu">
+        <a href="#"> 色設定 </a><br>
+        <a href="./zoom.html"> ズーム / その他設定</a>
+      </div>
+      <div class="main-contents">
+        <h1 class="title has-text-centered is-w"> Settings - Color</h1>
+        <div class="container">
+          <div class="box is-costom">
+            <h1 class="subtitle" id="displays" style="color:#FFFFFF">読み込み中..</h1>
+            <div class="settings_container">
+              <div class="box" style="display: inline-block; _display: inline;" id="sindo1">
+                <h1 class="title">1</h1>
+              </div>
+              <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 1 - 色</label>
+                <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo1i"> </div>
+              </div>
+              <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 1 - 枠線の色</label>
+                <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo1iw"> </div>
+              </div>
+            </div>
+            <div class="settings_container">
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo2">
+              <h1 class="title">2</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 2 - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo2i"> </div>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 2 - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo2iw"> </div>
+            </div>
+           </div>
+          <div class="settings_container">
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo3">
+              <h1 class="title">3</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 3 - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo3i"> </div>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 3 - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo3iw"> </div>
+            </div>
+          </div>
+          <div class="settings_container">
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo4">
+              <h1 class="title">4</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 4 - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo4i"> </div>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 4 - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo4iw"> </div>
+            </div>
+          </div>
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo5">
+              <h1 class="title">5-</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 5- - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo5i"> </div>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 5- - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo5iw"> </div>
+            </div>
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo5p">
+              <h1 class="title">5+</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 5+ - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo5pi"> </div>
+             <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 5+ - 枠線の色</label>
+                <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo5piw"> </div>
+              </div>
+            </div><br>
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo6">
+              <h1 class="title is-w">6</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 6- - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo6i"> </div>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 6- - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo6iw"> </div>
+            </div>
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo6p">
+              <h1 class="title is-w">6+</h1>
+            </div>
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 6+ - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo6pi"> </div>
+            </div>              
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 6+ - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo6piw"> </div>
+            </div><br>
+            <div class="box" style="display: inline-block; _display: inline;" id="sindo7">
+              <h1 class="title is-w">7</h1>
+            </div>
+            <div class="field" style="display: inline-block;"> <label class="label is-w">震度 7 - 色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo7i"> </div>
+            </div> 
+            <div class="field" style="display: inline-block; _display: inline;"> <label class="label is-w">震度 7 - 枠線の色</label>
+              <div class="control"> <input class="input" type="text" placeholder="ColorCode input" id="sindo7iw"> </div>
+            </div><br>
+            <div id="disabledfamily"> <button class="button is-primary" onclick="save()" disabled>
+          <i class="fa-solid fa-folder-open"></i>
+          保存
+        </button> <button class="button is-primary" id="save" onclick="asset()" disabled>
+          <i class="fa-solid fa-folder-open"></i>
+          アセットとして保存
+        </button> <button class="button is-primary" id="load" onclick="assetCall();setTimeout(() => { save()},100)" disabled>
+          <i class="fa-solid fa-folder-open"></i>
+          アセットの呼び出し(保存も行います)
+        </button> <button class="button is-danger" onclick="reset();setTimeout(()=>{save()},100)" disabled>
+          <i class="fa-solid fa-face-awesome"></i>
+          リセット
+        </button> <a class="button is-success" href="../index.html" disabled>
+          <i class="fa-solid fa-share"></i>
+          もどる
+        </a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

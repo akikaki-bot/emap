@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+ <html lang="ja" style="background-color:#1c1b1b">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="crossorigin="anonymous"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script type="text/javascript" src="./script/utils.js"></script>
+        <script type="text/javascript" src="./script/index.js"></script>
+        <script type="text/javascript" src="./script/converter.js"></script>
+        <script type="text/javascript" src="./script/change.js"></script>
+        <script type="text/javascript" src="./script/eew.js"></script>
+        <link rel="stylesheet" href="https://images.akika.ga/1313_datas_1321a_dashboard_a23420982.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+        <style>
+            #loading_display{
+              width : 1280px;
+              height : 720px;
+              background-color: #1c1b1b;
+            }
+            .loading {
+                animation: rotate-anime 1s linear infinite;
+            }
+            @keyframes rotate-anime {
+                0%  {transform: rotate(0);}
+                100%  {transform: rotate(360deg);}
+            }
+        </style>
+    </head>
+    <body onload="main()" >
+        <section class="section">
+             <div class="container">
+                <p id="status" class="is-w loading">
+                    <i class="fa-solid fa-spinner loading"></i> 
+                    Connecting to WSServer</p>
+                 <div id="eq_map" style="display:inline">
+                    <div id="loading_display" style="display:inline">
+                    </br></br></br></br></br></br></br></br>
+                       <h1 class="title has-text-centered is-w loading">
+                        <i class="fa-solid fa-spinner loading"></i> 
+                        読み込み中</h1>
+                    </div>
+                </div>
+                     <div class="options" style="float:left; display:table-cell">
+                        
+                         <div class="box" style="background-color:#212121; color:#FFFFFF">
+                            <p>
+                                 <button class="button is-danger" disabled>< 一個前の地震</button>
+                                 <button class="button is-info" disabled>一個先の地震 ></button>
+                                 <a class="button " href="./options/index.html">設定 / 状態</a>
+                                 <button class="button" onclick="conv()" disabled>バグ発生中のため停止</button>
+                                 <button class="button" onclick="remake()" disabled>更新 (デバック専用)</button>
+                            </p>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+         </section>
+    </body>
+    
+ </html>

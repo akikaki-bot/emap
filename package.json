@@ -1,0 +1,33 @@
+{
+  "name": "emap",
+  "productName":"いーまっぷ",
+  "version": "1.0.3",
+  "description": "とても見やすいマップを作ってくれそうな人 with d3.js and electron",
+  "main": "index.js",
+  "build": {
+    "appId": "net.akikaki.earthquakemap.app.my",
+    "win": {
+      "target": "nsis",
+      "icon":"assets/win/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --icon=assets/win/icon.ico --overwrite",
+    "installer": "electron-builder"
+  },
+  "keywords": [],
+  "author": "akikaki <datatensouakikaki@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "electron-packager": "^17.1.1"
+  },
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "eslint": "^8.30.0"
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" style="background-color:#1c1b1b">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v6.2.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style src="./index.css"></style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="./script/zoom_oth.js"></script>
+  <link rel="stylesheet" href="https://images.akika.ga/1313_datas_1321a_dashboard_a23420982.css">
+  <style>
+    body {
+        color: "#FFFFFF"
+    }
+  </style>
+</head>
+<body onload="init()">
+  <section class="section">
+    <div class="container_the_main">
+       <div class="preview left-menu">
+          <a href="./index.html"> 色設定 </a><br>
+          <a href="#"> ズーム / その他設定</a>
+       </div>
+       <div class="main-contents">
+         <h1 class="title has-text-centered is-w"> Settings - Zoom and other..</h1>
+           <div class="container">
+              <div class="box is-costom">
+                 <h1 class="subtitle is-w"> ズーム設定 </h1>
+                 <div class="field" style="display: inline-block; _display: inline;">
+                    <label class="label is-w" for="nube">高度なオプション - ズーム一定化</label>
+                    <div class="buttons has-addons" id="nube">
+                        <button class="button" id="zoom_on">有効</button> 
+                        <button class="button" id="zoom_off">無効</button> 
+                      </div>
+                   <label class="label is-w">ズームの倍率 (ズーム一定化設定をオンにすると有効）</label>
+                    <div class="control"> 
+                        <input class="input" type="number" placeholder="Default : x4" id="zoom"> 
+                    </div><br>
+                    <button class="button" id="save">保存</button>
+                  </div>
+              </div>
+           </div>
+       </div>
+    </div>
+  </section>
+</body>
+</html>
