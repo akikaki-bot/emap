@@ -262,7 +262,7 @@ async function create(p2p){
              async function MapCreate(){
               const sindo1 = async () => {
                 await s1.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 10){
                   await display(p2p)
@@ -273,7 +273,7 @@ async function create(p2p){
 
               const sindo2 = async () => {
                 await s2.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 20){
                   await display(p2p)
@@ -284,7 +284,7 @@ async function create(p2p){
 
               const sindo3 = async () => {
                 await s3.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 30){
                   await display(p2p)
@@ -295,7 +295,7 @@ async function create(p2p){
 
               const sindo4 = async () => {
                 await s4.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 40){
                   await display(p2p)
@@ -306,7 +306,7 @@ async function create(p2p){
 
               const sindo5 = async () => {
                 await s5.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 45){
                   await display(p2p)
@@ -317,7 +317,7 @@ async function create(p2p){
 
               const sindo5p = async () => {
                 await s5p.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 50){
                   await display(p2p)
@@ -328,7 +328,7 @@ async function create(p2p){
 
               const sindo6 = async () => {
                 await s6.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 55){
                   await display(p2p)
@@ -339,7 +339,7 @@ async function create(p2p){
 
               const sindo6p = async () => {
                 await s6p.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 60){
                   await display(p2p)
@@ -350,7 +350,7 @@ async function create(p2p){
 
               const sindo7 = async () => {
                 await s7.forEach(async i => {
-                  await CreatePoint(i.addr,i.scale,zoom,zoomnum(),width,height)
+                  await CreatePoint(i.addr,i.scale,zoom,zoomnum,width,height)
                 })
                 if(p2p.earthquake.maxScale === 70){
                   await display(p2p)

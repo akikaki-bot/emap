@@ -28,7 +28,8 @@ This soft is used D3.js, to make a earthquake detail map.
 At the first :
 
 まずは最初に :
-```
+
+```cmd
 git clone https://github.com/akikaki-bot/emap
 ```
 
@@ -36,7 +37,7 @@ git clone https://github.com/akikaki-bot/emap
 
 を実行し、
 
-```
+```cmd
 npm i 
 ```
 
@@ -48,7 +49,7 @@ npm i
 
 ↓ Then ↓
 
-```
+```cmd
 electron-builder
 ```
 
