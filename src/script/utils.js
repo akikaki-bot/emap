@@ -12,6 +12,23 @@ class Util {
         else false
     }
 
+     textinfomation(infomationtype){
+        switch(infomationtype){
+            case "ScalePrompt":
+                return "震度速報"
+            case "Destination":
+                return "震源情報"
+            case "ScaleAndDestination":
+                 return "震源・震度情報"
+            case "DetailScale":
+                  return "各地の震度情報"
+           case "Foreign":
+                  return "遠地地震情報"
+           default:
+                return "不明な情報"
+        }
+            }
+
     textforegintsunami(tsunami){
         switch(tsunami){
             case "None":

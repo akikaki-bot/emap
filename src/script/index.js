@@ -1,9 +1,58 @@
+function sleep(waitSeconds, someFunction) {
+  return new Promise(resolve => {
+    setTimeout(async () => {
+      resolve(await someFunction())
+    }, waitSeconds * 1000)
+  })	
+}
+
+
 const remake = () => {
-  fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=DetailScale&min_scale=55`)
-  .then((response) => response.json())
-  .then(async p2p => {
-    create(p2p[0])
-  })
+   const dankai1 = () => {
+     fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=ScalePrompt`)
+     .then((response) => response.json())
+     .then(async p2p => {
+       create(p2p[0])
+     })
+     console.log("dankai1")
+   }
+   const dankai2 = () => {
+    fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=Destination`)
+    .then((response) => response.json())
+    .then(async p2p => {
+      create(p2p[0])
+    })
+    console.log("dankai2")
+  }
+  const dankai3 = () => {
+    fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=ScaleAndDestination`)
+    .then((response) => response.json())
+    .then(async p2p => {
+      create(p2p[0])
+    })
+    console.log("dankai3")
+  }
+  const dankai4 = () => {
+    fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=DetailScale`)
+    .then((response) => response.json())
+    .then(async p2p => {
+      create(p2p[0])
+    })
+    console.log("dankai4")
+  }
+  const dankai5 = () => {
+    fetch(`https://api.p2pquake.net/v2/jma/quake?quake_type=Other`)
+    .then((response) => response.json())
+    .then(async p2p => {
+      create(p2p[0])
+    })
+  }
+
+  sleep(0,dankai1)
+  sleep(10,dankai2)
+  sleep(20,dankai3)
+  sleep(30,dankai4)
+ // sleep(10000,dankai5)
 }
 const main = async () => {
 
@@ -63,6 +112,7 @@ const main = async () => {
 let global_firstmake = false;
 
 async function create(p2p){
+  
   if(global_firstmake)
    {
     document.getElementById('eq_map').children[1].remove()
@@ -80,7 +130,79 @@ async function create(p2p){
     let pref = "";
     let maxscale = 0;
 
+    const svg = d3.select(document.getElementById('eq_map'))
+    .append('svg')
+    .attr("xmlns",'http://www.w3.org/2000/svg')
+    .attr('width', width)
+    .attr('height', height)
+    .style(`background-color`,"#1c1b1b")
+
+    $("svg").css('display', 'none');$("#loading_display").css('display','inline')
+
     //SindoArrays
+
+    const size = 15 //20 
+    const s_size = 7 //13
+    const s_width = 10 //5
+    const red_width = 9 //5
+
+
+
+    const projection = d3.geoMercator().center([137.0, 38.2]).translate([width / 2, height / 2]).scale(scale);
+    const path = d3.geoPath().projection(projection);
+
+//あたらしい地図のベース作成
+
+            //  const data = await d3.json("https://images.akika.ga/japan.json");
+
+              const url = (p2p) => {
+                  if(p2p.issue.type === "Foreign"){
+                    return "https://japonyol.net/editor/article/mundo.geojson"
+                  } else {
+                    return'https://images.akika.ga/japan.json'
+                  }
+              }
+
+              console.log(url(p2p))
+              const data = await d3.json(url(p2p))
+
+              //if(p2p.earthquake) return;
+
+              //console.log(data);
+              if(p2p.earthquake.hypocenter.longitude === NaN) {
+                p2p.earthquake.hypocenter.longitude = 0;
+                p2p.earthquake.hypocenter.latitude = 0;
+              }
+
+              const zoom = projection([p2p.earthquake.hypocenter.longitude,p2p.earthquake.hypocenter.latitude])
+              const zoomnum = () => {
+                if(p2p.issue.type === "Foregin") return 0.1
+                else return new Util().zoom(p2p.points.length ? p2p.points.length : 1000)
+              }
+
+              console.log(`Zoom ${zoomnum} ZoomXYproj${zoom}`)
+
+
+              svg
+              .selectAll('path')
+              .data(data.features)
+              .enter()
+              .append(`path`)
+              .attr(`d`, path)
+              .attr(`stroke`, "#333333")
+              .attr(`stroke-width`, 0.25)
+              .attr(`fill`,(item) => {
+                return "#666666"
+              })
+              .attr("transform", "translate(" + width/2 + "," + height/2 + ")scale(" + zoomnum + ")translate(" + - zoom[0] + "," + - zoom[1] + ")");
+              
+              if(p2p.issue.type === "Destination"){
+               await display(p2p)
+                $("svg").css('display', 'inline')
+                $("#loading_display").css('display','none')
+                return
+             }
+             
     /**@param {Array<string>}*/
     const s1 = [];
     const s2 = [];
@@ -91,6 +213,10 @@ async function create(p2p){
     const s6 = [];
     const s6p = [];
     const s7 = [];
+
+
+
+
 
     for(i of p2p.points){
       if(i.scale === 10){
@@ -121,72 +247,8 @@ async function create(p2p){
         s7.push(i)
       }
     }
- 
 
 
-
-    const projection = d3.geoMercator().center([137.0, 38.2]).translate([width / 2, height / 2]).scale(scale);
-    const path = d3.geoPath().projection(projection);
-
-//あたらしい地図のベース作成
-    const svg = d3.select(document.getElementById('eq_map'))
-              .append('svg')
-              .attr("xmlns",'http://www.w3.org/2000/svg')
-              .attr('width', width)
-              .attr('height', height)
-              .style(`background-color`,"#1c1b1b")
-
-    $("svg").css('display', 'none');$("#loading_display").css('display','inline')
-            //  const data = await d3.json("https://images.akika.ga/japan.json");
-
-              const url = (p2p) => {
-                  if(p2p.issue.type === "Foreign"){
-                    return "https://japonyol.net/editor/article/mundo.geojson"
-                  } else {
-                    return'https://images.akika.ga/japan.json'
-                  }
-              }
-
-              console.log(url(p2p))
-              const data = await d3.json(url(p2p))
-
-              //if(p2p.earthquake) return;
-
-              //console.log(data);
-              if(p2p.earthquake.hypocenter.longitude === NaN) {
-                p2p.earthquake.hypocenter.longitude = 0;
-                p2p.earthquake.hypocenter.latitude = 0;
-              }
-
-              const zoom = projection([p2p.earthquake.hypocenter.longitude,p2p.earthquake.hypocenter.latitude])
-              const zoomnum = new Util().zoom(p2p.points.length ? p2p.points.length : 1000)
-
-              console.log(`Zoom ${zoomnum} ZoomXYproj${zoom}`)
-
-
-              svg
-              .selectAll('path')
-              .data(data.features)
-              .enter()
-              .append(`path`)
-              .attr(`d`, path)
-              .attr(`stroke`, "#333333")
-              .attr(`stroke-width`, 0.25)
-              .attr(`fill`,(item) => {
-                return "#666666"
-              })
-              .attr("transform", "translate(" + width/2 + "," + height/2 + ")scale(" + zoomnum + ")translate(" + - zoom[0] + "," + - zoom[1] + ")");
-              
-             
-
-
-              function sleep(waitSeconds, someFunction) {
-                return new Promise(resolve => {
-                  setTimeout(async () => {
-                    resolve(await someFunction())
-                  }, waitSeconds * 1000)
-                })	
-              }
 
           if(!(p2p.issue.type === "Foreign")){
             console.log('こっち')
@@ -343,6 +405,15 @@ async function create(p2p){
               .attr('fill',"#FFFFFF")
               .text(`x${zoomnum}`)
 
+              await svg.append("text")
+              .attr("x", 1000)
+              .attr("y", 20)
+              .attr("width",80)
+              .attr("height",20)
+              .attr("opacity",0.5)
+              .attr('fill',"#FFFFFF")
+              .text(`地図データ : NaturalEarth / 国土地理院`)
+
               
                  await svg.append("text")
                  .attr('x', 0)
@@ -359,9 +430,55 @@ async function create(p2p){
               await svg.append("rect")
               .attr("x", 20)
               .attr("y", 200)
-              .attr("width",80)
-              .attr("height",200)
+              .attr("width",120)
+              .attr("height",260)
               .attr('fill','#1F2023')
+
+              const singendisplayx = 48
+              const singendisplayy = 425
+
+              const singendisplay = [singendisplayx , singendisplayy]
+
+              await svg.append('text')
+              .attr("x",81)
+              .attr("y",435)
+              .attr("font-size", 25)
+              .attr('fill',"#FFFFFF")
+              .attr('font-family',"Noto Sans jp")
+              .text(`震源`)
+
+              svg.append('line')
+              .attr('x1', singendisplay[0] - s_size - s_width)
+              .attr('x2', singendisplay[0] + s_size + s_width)
+              .attr('y1', singendisplay[1] - s_size - s_width)
+              .attr('y2', singendisplay[1] + s_size + s_width)
+              .attr('stroke-width', s_width + 3 * 2)
+              .style('stroke', "yellow")
+
+          svg.append('line')
+              .attr('x1', singendisplay[0] - s_size - s_width)
+              .attr('x2', singendisplay[0] + s_size + s_width)
+              .attr('y1', singendisplay[1] + s_size + s_width)
+              .attr('y2', singendisplay[1] - s_size - s_width)
+              .attr('stroke-width', s_width + 3 * 2)
+              .style('stroke', "yellow")
+
+          svg.append('line')
+              .attr('x1', singendisplay[0] - size)
+              .attr('x2', singendisplay[0] + size)
+              .attr('y1', singendisplay[1] - size)
+              .attr('y2', singendisplay[1] + size)
+              .attr('stroke-width', red_width)
+              .style('stroke', "red")
+
+          svg.append('line')
+              .attr('x1', singendisplay[0] - size)
+              .attr('x2', singendisplay[0] + size)
+              .attr('y1', singendisplay[1] + size)
+              .attr('y2', singendisplay[1] - size)
+              .attr('stroke-width', red_width)
+              .style('stroke', "red")
+
 
               //震度7から１の棒
               await svg.append("rect")
@@ -664,7 +781,7 @@ async function create(p2p){
               .attr('font-family',"Noto Sans jp")
               .attr("font-weight","")
               .attr('font-size' , 20)
-              .text(`各地の震度情報`)
+              .text(`${new Util().textinfomation(p2p.issue.type)}`)
 
               await svg.append("text")
               .attr("x", 230)
@@ -722,9 +839,7 @@ await svg.append('rect')
             //  .attr('fill', 'red') // 塗りつぶし色
            //   .attr("transform", "translate(" + width/2 + "," + height/2 + ")scale(" + zoomnum + ")translate(" + - zoom[0] + "," + - zoom[1] + ")");
 
-           const size = 20
-           const s_size = 13
-           const s_width = 10
+
 
              const center = singen
               svg.append('line')
@@ -750,7 +865,7 @@ await svg.append('rect')
                   .attr('x2', center[0] + size)
                   .attr('y1', center[1] - size)
                   .attr('y2', center[1] + size)
-                  .attr('stroke-width', s_width)
+                  .attr('stroke-width', red_width)
                   .style('stroke', "red")
                   .attr("transform", "translate(" + width/2 + "," + height/2 + ")translate(" + - zoom[0] + "," + - zoom[1] + ")");
 
@@ -759,7 +874,7 @@ await svg.append('rect')
                   .attr('x2', center[0] + size)
                   .attr('y1', center[1] + size)
                   .attr('y2', center[1] - size)
-                  .attr('stroke-width', s_width)
+                  .attr('stroke-width', red_width)
                   .style('stroke', "red")
                   .attr("transform", "translate(" + width/2 + "," + height/2 + ")translate(" + - zoom[0] + "," + - zoom[1] + ")");
 
